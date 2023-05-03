@@ -1,0 +1,73 @@
+<nav class="navbar navbar-light bg-primary">
+    <div class="container-fluid">
+        <h1 class="text-white">Angular CRUD</h1>
+        <div class="d-flex">
+            <button (click) = "clickAdd()"  type="button" data-bs-toggle="modal" data-bs-target="#exampleModal" class="btn btn-success">Add User</button>
+        </div>
+    </div>
+</nav>
+<table class="table">
+    <thead class="">
+        <tr class="">
+            <th scope="col" class="">ID</th>
+            <th scope="col" class="">Full Name</th>
+            <th scope="col" class="">Email</th>
+            <th scope="col" class="">Phone</th>
+            <th scope="col" class="">Role</th>
+            <th scope="col" class="">Action</th>
+        </tr>
+    </thead>
+    <tbody *ngFor = "let row of userData" class="">
+        <tr class="">
+            <td class="">{{row.id}}</td>
+            <td class="">{{row.fullName}}</td>
+            <td class="">{{row.email}}</td>
+            <td class="">{{row.phoneNumber}}</td>
+            <td class="">{{(row.role == 1) ? 'Admin' : 'User'}}</td>
+            <td class="">
+                <button (click) ="onEdit(row)" type="button" data-bs-toggle="modal" data-bs-target="#exampleModal" class="btn btn-info">Edit</button>
+                <button (click) ="deleteUser(row.id)" class="btn btn-danger mx-3">Delete</button>
+            </td>
+        </tr>
+    </tbody>
+</table>
+
+  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+            <form [formGroup] = "formValue">
+                <div class="mb-3">
+                  <label for="exampleInputEmail1" class="form-label">Full Name</label>
+                  <input type="text" formControlName="fullName" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                </div>
+                <div class="mb-3">
+                  <label for="exampleInputPassword1" class="form-label">Email Address</label>
+                  <input type="email" formControlName = "email" class="form-control" id="exampleInputPassword1">
+                </div>
+                <div class="mb-3">
+                  <label for="exampleInputPassword1" class="form-label">Phone Number</label>
+                  <input type="text" formControlName = "phoneNumber" class="form-control" id="exampleInputPassword1">
+                </div>
+                <div class="mb-3">
+                    <label for="exampleInputPassword1"  class="form-label">Role</label>
+                    <select formControlName = "role" class="form-select">
+                      <option *ngFor="let o of options_role" [value]="o.value">
+                        {{o.name}}
+                     </option>
+                    </select>
+                </div>
+            </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" id="cancel" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          <button type="button" *ngIf = 'showAdd' (click)="postUserDetails()" class="btn btn-primary">Add</button>
+          <button type="button" *ngIf = 'showUpdate' (click)="editUserDetails()" class="btn btn-primary">Edit</button>
+        </div>
+      </div>
+    </div>
+  </div>

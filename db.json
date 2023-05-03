@@ -1,0 +1,28 @@
+{
+  "posts": [
+    {
+      "id": 1,
+      "fullName": "gia huy",
+      "email": "haianhem@gmail.com",
+      "phoneNumber": "0868660514",
+      "role": 1
+    },
+    {
+      "id": 2,
+      "fullName": "gia huân123",
+      "email": "Admin@sapp.vn",
+      "phoneNumber": "123456596",
+      "role": "2"
+    }
+  ],
+  "comments": [
+    {
+      "id": 1,
+      "body": "some comment",
+      "postId": 1
+    }
+  ],
+  "profile": {
+    "name": "typicode"
+  }
+}
